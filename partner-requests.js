@@ -38,7 +38,7 @@ Requests.createUser = function(username, cb){
 }
 
 
-Requests.authCookieToken = function (username, cb){
+Requests.authCookieUrl = function (username, cb){
 	request({
 		method: 'POST',
 		url: config.apiHostname + '/api/v1/' + config.clientSlug + '/users/' + username + '/login-token',
@@ -59,21 +59,13 @@ Requests.authCookieToken = function (username, cb){
 			console.log('auth-cookie-failed:statusCode', resp.statusCode);
 			return cb();
 		}
-		return cb(null, body.token);
+		return cb(null, body.redirectUrl);
 	});
 }
-
-var authCookieTokenUrl = function(username, token){
-	return config.apiHostname + '/api/v1/' + config.clientSlug + '/users/' + username + '/login-token/' + token;
-}
-
 
 Requests.createUserAuthAndGetCookieUrl = function(username, cb){
 	Requests.createUser(username, function(err, result){
 		if(err) return cb(err);
-		Requests.authCookieToken(username, function(err, token){
-			if(err || !token) return cb(err);
-			cb(null, authCookieTokenUrl(username, token));
-		});
+		Requests.authCookieUrl(username, cb);
 	});
 }

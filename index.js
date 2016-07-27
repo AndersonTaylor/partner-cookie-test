@@ -7,13 +7,13 @@ app.use(bodyParser());
 
 app.get('/', function(req, res){
   var html = '<form action="/" method="post">' +
-							  '<br>' +
-								'<br>' +
-								'Enter username: ' +
-								'<input type="text" name="userName" />' +
-								'<br>' +
-								'<button type="submit">Submit</button>' +
-							'</form>';
+				'<br>' +
+				'<br>' +
+				'Enter username to login: ' +
+				'<input type="text" name="userName" />' +
+				'<br>' +
+				'<button type="submit">Submit</button>' +
+			'</form>';
                
   res.send(html);
 });

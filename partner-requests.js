@@ -43,7 +43,7 @@ Requests.authCookieToken = function (username, cb){
 		method: 'POST',
 		url: config.apiHostname + '/api/v1/' + config.clientSlug + '/users/' + username + '/login-token',
 		json: {
-			username: username
+			redirectUrl: redirectUrl
 		},
 		timeout: 1000,
 		auth: {
@@ -64,8 +64,7 @@ Requests.authCookieToken = function (username, cb){
 }
 
 var authCookieTokenUrl = function(username, token){
-	var url = config.apiHostname + '/api/v1/' + config.clientSlug + '/users/' + username + '/login-token/' + token;
-	return url+'?url='+redirectUrl;
+	return config.apiHostname + '/api/v1/' + config.clientSlug + '/users/' + username + '/login-token/' + token;
 }
 
 

@@ -2,13 +2,13 @@ var request = require('request');
 var Requests = module.exports = {};
 
 var config = {
-	apiHostname: 'https://partners-ids3.dev.caster.tv',
-	clientSlug: 'discord-dev',
-	clientId: 'clientId',          // TODO Fill in!
+	apiHostname: 'https://partners.stream.me',
+	clientSlug: 'clientSlug',  // TODO Fill in!
+	clientId: 'clientId',   // TODO Fill in!
 	clientSecret: 'clientSecret',  // TODO Fill in!
 }
 
-var redirectUrl = 'https://ids3.dev.caster.tv/stream-embed/starcitizen/app/web/fullframe'
+var redirectUrl = 'https://stream.me/YourChannelOrEmbed' // TODO Fill in!
 
 Requests.createUser = function(username, cb){
 	var url = config.apiHostname + '/api/v1/' + config.clientSlug + '/users';
@@ -18,7 +18,7 @@ Requests.createUser = function(username, cb){
 		json: {
 			username: username
 		},
-		timeout: 1000,
+		timeout: 5000,
 		auth: {
 			user: config.clientId,
 			pass: config.clientSecret
@@ -45,7 +45,7 @@ Requests.authCookieUrl = function (username, cb){
 		json: {
 			redirectUrl: redirectUrl
 		},
-		timeout: 1000,
+		timeout: 5000,
 		auth: {
 			user: config.clientId,
 			pass: config.clientSecret
